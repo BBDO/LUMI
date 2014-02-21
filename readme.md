@@ -1,22 +1,14 @@
-# Smack The Snowman
-![Smack The Snowman](https://raw.github.com/jasonrwalters/SmackTheSnowman/master/bin/data/smackthesnowman.png)
+# LUMI
 
-Was a quick holiday kinect project made over the course of a few days at BBDO NYC.
-We wanted to make something fun to celebrate the holiday season that all employees could enjoy.
-
-Created by Mathias Appelblad, Sermad Buni, Jason Walters, and Michael Enerva.
-    Developed by Jason Walters.
-    Artwork by Michael Enerva.
-
-Included are all required addon's in Addons.zip, located in `bin/data/`.
-Unpack and move to `openFrameworks/addons/` folder before using.
-
-*All artwork is property of BBDO and can not be used for commercial use.*
+Created by Sermad Buni and Jason Walters.
 
 ##HOW TO USE
-1. define your display resolution in main.cpp.
-2. press spacebar to access GUI.
-3. press / to toggle fullscreen.
-4. use GUI POSITION(s) to adjust objects on screen.
-                  
-#ENJOY!
+1. (i) key = Images
+2. (v) key = Videos, press during to pause/play.
+3. (g) key = GIFs.
+4. (d) key = demo mode, press during to toggle various modes.
+5. (- or +) key = steps through videos, images, gifs.
+6. (up or down) keys = control the brightness.
+7. (left or right) keys = control animation speeds (currently only affects GIFs and Wave animation).
+8. (r) key = rotates the display by 90 degrees.
+9. (f) key = flips the display.
