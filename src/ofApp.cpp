@@ -38,7 +38,7 @@ void ofApp::setup() {
     // (portName, xOffset, yOffset, width%, height%, direction)
     teensy.serialConfigure("tty.usbmodem14761", 0, 50, 100, 25, 0);
     teensy.serialConfigure("tty.usbmodem14791", 0, 25, 100, 25, 0);
-    teensy.serialConfigure("tty.usbmodem25", 0, 0, 100, 25, 0);
+    teensy.serialConfigure("tty.usbmodem29", 0, 0, 100, 25, 0);
     teensy.serialConfigure("tty.usbmodem14751", 0, 75, 100, 25, 0);
     
     // allocate our pixels, fbo, and texture
@@ -48,6 +48,10 @@ void ofApp::setup() {
     
     // osc -- listen on the given port
     //receiver.setup(PORT);
+    
+    // TEST PATTERN
+    //--------------------------------------
+    font.loadFont("fonts/samst.ttf", 10);
     
     // GIFS - dynamic loading
     //--------------------------------------
@@ -188,7 +192,7 @@ void ofApp::drawFbo()
     switch (drawModes)
     {
         case 0:
-            drawDemos();
+            drawTestPattern();
             break;
         case 1:
             drawVideos();
@@ -199,6 +203,10 @@ void ofApp::drawFbo()
         case 3:
             gif.draw(currentGif, 255, waveSpeed, stripWidth, stripHeight*stripsPerPort*numPorts);
             break;
+        case 4:
+            drawDemos();
+            break;
+            
             
         default:
             break;
@@ -297,6 +305,39 @@ void ofApp::drawPanels()
 //--------------------------------------------------------------
 // DEMO DRAW FUNCTIONS BELOW !!! //
 //--------------------------------------------------------------
+
+//--------------------------------------------------------------
+void ofApp::drawTestPattern()
+{
+    // vertical strips of rainbow goodness
+    for (int i = 0; i < stripWidth; i++)
+    {
+        if (i < 16) {
+            ofSetColor(255, 0, 0);
+            ofRect(i, 0, 1, (stripHeight*stripsPerPort*numPorts));
+        }
+        else if (i > 15 && i < 32) {
+            ofSetColor(255, 255, 0);
+            ofRect(i, 0, 1, (stripHeight*stripsPerPort*numPorts));
+        }
+        else if (i > 31 && i < 48) {
+            ofSetColor(0, 255, 0);
+            ofRect(i, 0, 1, (stripHeight*stripsPerPort*numPorts));
+        }
+        else if (i > 47 && i < 64) {
+            ofSetColor(0, 0, 255);
+            ofRect(i, 0, 1, (stripHeight*stripsPerPort*numPorts));
+        }
+    }
+    
+    //Number the panels
+    ofSetColor(255);
+    font.drawString("1", 6, 40);
+    font.drawString("2", 20, 40);
+    font.drawString("3", 36, 40);
+    font.drawString("4", 52, 40);
+}
+
 void ofApp::drawDemos()
 {
     switch (demoModes) {
@@ -523,9 +564,18 @@ void ofApp::keyPressed(int key){
             vid[currentVideo].setFrame(0);                        // restart video at first frame
             
             demoModes++;
-            if (drawModes != 0) drawModes = 0;      // switch the draw mode to display demo mode.
+            if (drawModes != 4) drawModes = 4;      // switch the draw mode to display demo mode.
             if (demoModes > 3) demoModes = 0;       // tap through the demo modes on each press.
             if (demoModes == 3) waveSpeed = 0.05f;  // if wave animation, drop speed down
+            break;
+            
+            //-----------------------------------------------
+        case 't':
+            videoOn = false;                        // disables video
+            if (vid[currentVideo].isPlaying()) vid[currentVideo].stop();  // stops/pauses the video
+            vid[currentVideo].setFrame(0);                        // restart video at first frame
+            
+            if (drawModes != 0) drawModes = 0;      // switch the draw mode to display boot pattern.
             break;
     }
 

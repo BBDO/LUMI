@@ -62,10 +62,15 @@ class ofApp : public ofBaseApp{
     void drawWaves();
     void drawVideos();
     void drawImages();
+    void drawTestPattern();
     int drawModes;
     int demoModes;
     float counterShape;
     int hue;
+    
+    // Test Pattern
+    //-----------------------------
+    ofTrueTypeFont font;
     
     // Video player
     //-----------------------------
