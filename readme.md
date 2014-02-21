@@ -12,3 +12,4 @@ Created by Sermad Buni and Jason Walters.
 7. (left or right) keys = control animation speeds (currently only affects GIFs and Wave animation).
 8. (r) key = rotates the display by 90 degrees.
 9. (f) key = flips the display.
+10. (t) key = is the panel test pattern.
